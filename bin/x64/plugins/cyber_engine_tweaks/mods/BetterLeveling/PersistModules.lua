@@ -1,34 +1,44 @@
 local persistModules = {}
 
-local Core       = require("modules/LevelingCore")
-local fixpers    = require("modules/Values/FixesPersist")
-local attrUnlock = require("modules/Values/AttributeUnlocked")
-local attrBonus  = require("modules/Values/AttributeBonus")
-local levelBonus = require("modules/Values/LevelBonus")
-local cyberprogress   = require("modules/Values/MoreCyberwareCapacity")
+local Core           = require("Modules/LevelingCore")
+local StartupTweaks  = require("Function/StartupTweaks")
+local attrUnlock     = require("Function/AttributeUnlocked")
+local attrBonus      = require("Function/AttributeBonus")
+local levelBonus     = require("Function/LevelBonus")
+local cyberprogress  = require("Function/MoreCyberwareCapacity")
+local Event          = require("Utility/EventListener")
+local Math           = require("Utility/MathHandler")
+
+local lastAttrValues = {}
+local baseApplied = false
+local bonusApplied = false
+local xpApplied = false
 
 function persistModules.applyBaseSettings()
     local file = io.open("Data/config.json", "r")
-    if not file then
-        return
-    end
+    if not file then return end
 
     local content = file:read("*a")
     file:close()
 
     local ok, config = pcall(function() return json.decode(content) end)
-    if not ok or not config then
-        return
-    end
+    if not ok or not config then return end
 
-    fixpers:apply(config)
-    attrUnlock:applyAttributeCap(config.AttributeCap)
-    cyberprogress:apply(config)
+    if config.FeatureFlags.StartingAttr then
+        StartupTweaks:apply(config)
+    end
+    if config.FeatureFlags.AttributeCap then
+        attrUnlock:applyAttributeCap(config.AttributeCap)
+    end
+    if config.FeatureFlags.CyberwareScaling then
+        cyberprogress:apply(config)
+    end
 end
 
 function persistModules.tryApplyBonusIfNeeded()
-    local player = Game and Game.GetPlayer()
-    local devData = player and PlayerDevelopmentSystem.GetData(player)
+    if not Core.curSettings.FeatureFlags.AttributeBonus then return false end
+
+    local devData = Event.getDevData()
     if not devData then return end
 
     local attributes = {
@@ -40,7 +50,8 @@ function persistModules.tryApplyBonusIfNeeded()
     }
 
     for _, attr in ipairs(attributes) do
-        if devData:GetAttributeValue(attr) > 20 then
+        local value = devData:GetAttributeValue(attr)
+        if Math.shouldApplyAttributeBonus(value) then
             attrBonus:apply()
             return true
         end
@@ -49,11 +60,10 @@ function persistModules.tryApplyBonusIfNeeded()
     return false
 end
 
-local lastAttrValues = {}
-
 local function checkAttributeChanges()
-    local player = Game and Game.GetPlayer()
-    local devData = player and PlayerDevelopmentSystem.GetData(player)
+    if not Core.curSettings.FeatureFlags.AttributeBonus then return end
+
+    local devData = Event.getDevData()
     if not devData then return end
 
     local statTypes = {
@@ -74,14 +84,11 @@ local function checkAttributeChanges()
     end
 end
 
-local baseApplied = false
-local bonusApplied = false
+function persistModules.handleUpdate()
+    local devData = Event.getDevData()
+    if not devData then return end
 
-registerForEvent("onUpdate", function()
-    local player = Game and Game.GetPlayer()
-    local devData = player and PlayerDevelopmentSystem and PlayerDevelopmentSystem.GetData(player)
-
-    if not baseApplied and devData then
+    if not baseApplied then
         baseApplied = true
         Core.curSettings = Core.loadSettings()
         Core.refreshVariables()
@@ -94,6 +101,7 @@ registerForEvent("onUpdate", function()
             TechnicalAbility = gamedataStatType.TechnicalAbility,
             Intelligence = gamedataStatType.Intelligence
         }
+
         for name, stat in pairs(statTypes) do
             lastAttrValues[name] = devData:GetAttributeValue(stat)
         end
@@ -106,12 +114,21 @@ registerForEvent("onUpdate", function()
     if baseApplied then
         checkAttributeChanges()
 
-        if levelBonus and type(levelBonus.update) == "function" then
+        if Core.curSettings.FeatureFlags.LevelBonus and levelBonus and type(levelBonus.update) == "function" then
             levelBonus.update()
-        else
-            print("[BTL] levelBonus.update is not available (nil or not a function)")
+        end
+
+        if Core.curSettings.FeatureFlags.XPMultiplier and not xpApplied then
+            xpApplied = true
+            local xpMod = require("Function/XPMultiplier")
+            xpMod:apply()
         end
     end
-end)
+
+    if #Core.deferredQueue > 0 then
+        local task = table.remove(Core.deferredQueue, 1)
+        local ok, err = pcall(task.func)
+    end
+end
 
 return persistModules

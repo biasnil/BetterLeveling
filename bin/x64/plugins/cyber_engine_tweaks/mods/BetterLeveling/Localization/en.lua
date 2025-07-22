@@ -37,5 +37,72 @@ return {
     moreCyberwareDesc = "Sets the scaling factor for Cyberware capacity based on your level. (default: 3)",
 
     cyberwareCap = "Cyberware Capacity Cap",
-    cyberwareCapDesc = "Set the max cyberware capacity (requires reload). (default: 450)"
+    cyberwareCapDesc = "Set the max cyberware capacity (requires reload). (default: 450)",
+
+    featureTogglesCategory = "Enable or Disable Features",
+    toggleDesc = "Turn this feature on or off.",
+
+    toggleOrder = 
+    {
+        "LevelCap",
+        "StreetCredCap",
+        "AttributeCap",
+        "StartingAttr",
+        "CyberwareScaling",
+        "CyberwareCap",
+        "AttributeBonus",
+        "LevelBonus",
+        "XPMultiplier",
+        "XPMult_StreetCred",
+        "XPMult_Headhunter",
+        "XPMult_Netrunner",
+        "XPMult_Shinobi",
+        "XPMult_Solo",
+        "XPMult_Engineer"
+    },
+
+    toggleLabels = 
+    {
+        LevelCap = "Enable Custom Level",
+        StreetCredCap = "Enable Custom Street Cred",
+        AttributeCap = "Enable Attribute Cap",
+        StartingAttr = "Enable Starting Attributes",
+        CyberwareScaling = "Enable Cyberware Scaling",
+        CyberwareCap = "Enable Cyberware Cap",
+        AttributeBonus = "Enable Attribute Bonuses",
+        LevelBonus = "Enable Level Bonuses",
+        XPMultiplier = "Enable XP Multipliers",
+        XPMult_StreetCred = "Enable Street Cred XP Multiplier",
+        XPMult_Headhunter = "Enable Headhunter XP Multiplier",
+        XPMult_Netrunner = "Enable Netrunner XP Multiplier",
+        XPMult_Shinobi = "Enable Shinobi XP Multiplier",
+        XPMult_Solo = "Enable Solo XP Multiplier",
+        XPMult_Engineer = "Enable Engineer XP Multiplier"
+    },
+
+    xpScalingCategory = "XP, Street Cred, Shinobi Multiplier",
+    xpScalingToggleDesc = "Turn XP multiplier on or off for this proficiency.",
+    xpSliderDesc = "Set XP multiplier (default: 1.0).",
+
+    xpSliderOrder = 
+    {
+        "Level",
+        "StreetCred",
+        "Headhunter",
+        "Netrunner",
+        "Shinobi",
+        "Solo",
+        "Engineer"
+    },
+
+    xpSliderLabels = 
+    {
+        Level = "Level XP Multiplier",
+        StreetCred = "Street Cred XP Multiplier",
+        Headhunter = "Headhunter XP Multiplier",
+        Netrunner = "Netrunner XP Multiplier",
+        Shinobi = "Shinobi XP Multiplier",
+        Solo = "Solo XP Multiplier",
+        Engineer = "Engineer XP Multiplier"
+    }
 }
