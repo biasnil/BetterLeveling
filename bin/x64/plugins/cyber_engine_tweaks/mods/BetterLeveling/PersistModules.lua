@@ -6,8 +6,12 @@ local attrUnlock     = require("Function/AttributeUnlocked")
 local attrBonus      = require("Function/AttributeBonus")
 local levelBonus     = require("Function/LevelBonus")
 local cyberprogress  = require("Function/MoreCyberwareCapacity")
-local Event          = require("Utility/EventListener")
 local Math           = require("Utility/MathHandler")
+
+local function getDevData()
+    local p = Game and Game.GetPlayer()
+    return p and PlayerDevelopmentSystem.GetData(p)
+end
 
 local lastAttrValues = {}
 local baseApplied = false
@@ -38,8 +42,8 @@ end
 function persistModules.tryApplyBonusIfNeeded()
     if not Core.curSettings.FeatureFlags.AttributeBonus then return false end
 
-    local devData = Event.getDevData()
-    if not devData then return end
+    local devData = getDevData()
+    if not devData then return false end
 
     local attributes = {
         gamedataStatType.Reflexes,
@@ -63,7 +67,7 @@ end
 local function checkAttributeChanges()
     if not Core.curSettings.FeatureFlags.AttributeBonus then return end
 
-    local devData = Event.getDevData()
+    local devData = getDevData()
     if not devData then return end
 
     local statTypes = {
@@ -84,8 +88,8 @@ local function checkAttributeChanges()
     end
 end
 
-function persistModules.handleUpdate()
-    local devData = Event.getDevData()
+function persistModules.handleUpdate(dt)
+    local devData = getDevData()
     if not devData then return end
 
     if not baseApplied then
@@ -128,6 +132,7 @@ function persistModules.handleUpdate()
     if #Core.deferredQueue > 0 then
         local task = table.remove(Core.deferredQueue, 1)
         local ok, err = pcall(task.func)
+        -- (optional) log err if not ok
     end
 end
 

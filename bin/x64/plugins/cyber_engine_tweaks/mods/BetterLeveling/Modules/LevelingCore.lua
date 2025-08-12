@@ -1,8 +1,9 @@
+-- Modules/LevelingCore.lua
 local Core = {}
 
-local Constants = require("Utility/ConstantsHandler")
+local Constants  = require("Utility/ConstantsHandler")
 Core.curSettings = nil
-Core.Globals = Constants.deepCopy(Constants.DefaultSettings)
+Core.Globals     = Constants.deepCopy(Constants.DefaultSettings)
 
 -- Deferred reload queue
 Core.deferredQueue = {}
@@ -12,7 +13,7 @@ function Core.defer(fn, label)
 end
 
 local startingAttr = require("Function/StartupTweaks")
-local moreCyber = require("Function/MoreCyberwareCapacity")
+local moreCyber    = require("Function/MoreCyberwareCapacity")
 
 function Core.loadSettings()
     local file = io.open("Data/config.json", "r")
@@ -25,7 +26,7 @@ function Core.loadSettings()
     local config = ok and content or {}
 
     local flagsUpdated = false
-    local xpUpdated = false
+    local xpUpdated    = false
 
     -- Merge missing FeatureFlags if needed
     if not config.FeatureFlags then
@@ -69,14 +70,23 @@ function Core.saveSettings()
 end
 
 function Core.refreshVariables()
-    Core.Globals.NewLevelCap = Core.curSettings.NewLevelCap
-    Core.Globals.StreetCredCap = Core.curSettings.StreetCredCap or Constants.DefaultSettings.StreetCredCap
-    Core.Globals.MaxStartingAttribute = Core.curSettings.MaxStartingAttribute
+    Core.Globals.NewLevelCap             = Core.curSettings.NewLevelCap
+    Core.Globals.StreetCredCap           = Core.curSettings.StreetCredCap or Constants.DefaultSettings.StreetCredCap
+    Core.Globals.MaxStartingAttribute    = Core.curSettings.MaxStartingAttribute
     Core.Globals.StartingAttributePoints = Core.curSettings.StartingAttributePoints
-    Core.Globals.AttributeCap = Core.curSettings.AttributeCap
-    Core.Globals.MoreCyberwareCapacity = Core.curSettings.MoreCyberwareCapacity or Constants.DefaultSettings.MoreCyberwareCapacity
-    Core.Globals.CyberwareCap = Core.curSettings.CyberwareCap or Constants.DefaultSettings.CyberwareCap
-    Core.Globals.XPValues = Core.curSettings.XPValues or Constants.DefaultSettings.XPValues
+    Core.Globals.AttributeCap            = Core.curSettings.AttributeCap
+    Core.Globals.MoreCyberwareCapacity   = Core.curSettings.MoreCyberwareCapacity or Constants.DefaultSettings.MoreCyberwareCapacity
+    Core.Globals.CyberwareCap            = Core.curSettings.CyberwareCap or Constants.DefaultSettings.CyberwareCap
+    Core.Globals.XPValues                = Core.curSettings.XPValues or Constants.DefaultSettings.XPValues
+end
+
+function Core.revertAttributeCapToDefault()
+    local def = (Constants.DefaultSettings and Constants.DefaultSettings.AttributeCap) or 20
+    if Core.curSettings.AttributeCap ~= def then
+        Core.curSettings.AttributeCap = def
+        Core.saveSettings()
+    end
+    require("Function/AttributeUnlocked"):applyAttributeCap(def) -- Just for redscript
 end
 
 function Core.applyFixesPersist()
@@ -94,7 +104,10 @@ end
 
 function Core.applyAttributeCap()
     if Core.curSettings.FeatureFlags.AttributeCap then
-        require("Function/AttributeUnlocked"):applyAttributeCap(Core.curSettings.AttributeCap)
+        local cap = Core.curSettings.AttributeCap
+        require("Function/AttributeUnlocked"):applyAttributeCap(cap)
+    else
+        Core.revertAttributeCapToDefault()
     end
 end
 
@@ -134,12 +147,11 @@ end
 function Core.reloadMods()
     Core.curSettings = Core.loadSettings() or Core.curSettings
     Core.refreshVariables()
-
-    Core.defer(Core.applyFixesPersist, "FixesPersist")
-    Core.defer(Core.applyAttributeCap, "AttributeCap")
-    Core.defer(Core.applyAttributeBonuses, "AttributeBonuses")
-    Core.defer(Core.applyMoreCyberwareCapacity, "CyberwareScaling")
-    Core.defer(Core.applyChangeableValue, "ChangeableValue")
+    Core.defer(Core.applyAttributeCap,         "AttributeCap")
+    Core.defer(Core.applyFixesPersist,         "FixesPersist")
+    Core.defer(Core.applyAttributeBonuses,     "AttributeBonuses")
+    Core.defer(Core.applyMoreCyberwareCapacity,"CyberwareScaling")
+    Core.defer(Core.applyChangeableValue,      "ChangeableValue")
 end
 
 return Core

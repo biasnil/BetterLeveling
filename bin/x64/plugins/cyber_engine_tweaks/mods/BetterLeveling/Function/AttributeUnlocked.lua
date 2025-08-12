@@ -12,6 +12,7 @@ function AttributeUnlocked:applyAttributeCap(cap)
     for _, attr in ipairs(attributes) do
         local key = string.format("BaseStats.%s.max", attr)
         TweakDB:SetFlat(key, cap)
+        TweakDB:Update(key)
     end
 end
 

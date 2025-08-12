@@ -22,7 +22,11 @@ return {
         [2] = "Français",
         [3] = "Espagnol",
         [4] = "Chinois",
-        [5] = "Russe"
+        [5] = "Russe",
+        [6] = "Allemand",
+        [7] = "Coréen",
+        [8] = "Japonais",
+        [9] = "Malais"
     },
 
     refreshLabel = "Appliquer la Langue",
@@ -63,7 +67,7 @@ return {
     toggleLabels = {
         LevelCap = "Activer Niveau Personnalisé",
         StreetCredCap = "Activer Crédit de Rue Personnalisé",
-        AttributeCap = "Activer la Limite d’Attribut",
+        AttributeCap = "Activer la Limite d’Attribut (Nécessite un redémarrage du jeu)",
         StartingAttr = "Activer Attributs de Départ",
         CyberwareScaling = "Activer l’Échelonnage Cyberware",
         CyberwareCap = "Activer Limite Cyberware",

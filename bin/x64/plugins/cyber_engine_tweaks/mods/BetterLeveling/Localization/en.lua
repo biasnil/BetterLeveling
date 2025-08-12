@@ -21,8 +21,12 @@ return {
         [1] = "English",
         [2] = "Français",
         [3] = "Español",
-        [4] = "Chinese",
-        [5] = "Russian"
+        [4] = "中文",
+        [5] = "Русский",
+        [6] = "Deutsch",
+        [7] = "한국어",
+        [8] = "日本語",
+        [9] = "Malay"
     },
 
     refreshLabel = "Apply Language",
@@ -42,8 +46,7 @@ return {
     featureTogglesCategory = "Enable or Disable Features",
     toggleDesc = "Turn this feature on or off.",
 
-    toggleOrder = 
-    {
+    toggleOrder = {
         "LevelCap",
         "StreetCredCap",
         "AttributeCap",
@@ -61,11 +64,10 @@ return {
         "XPMult_Engineer"
     },
 
-    toggleLabels = 
-    {
+    toggleLabels = {
         LevelCap = "Enable Custom Level",
         StreetCredCap = "Enable Custom Street Cred",
-        AttributeCap = "Enable Attribute Cap",
+        AttributeCap = "Enable Attribute Cap (Requires game restart)",
         StartingAttr = "Enable Starting Attributes",
         CyberwareScaling = "Enable Cyberware Scaling",
         CyberwareCap = "Enable Cyberware Cap",
@@ -84,8 +86,7 @@ return {
     xpScalingToggleDesc = "Turn XP multiplier on or off for this proficiency.",
     xpSliderDesc = "Set XP multiplier (default: 1.0).",
 
-    xpSliderOrder = 
-    {
+    xpSliderOrder = {
         "Level",
         "StreetCred",
         "Headhunter",
@@ -95,8 +96,7 @@ return {
         "Engineer"
     },
 
-    xpSliderLabels = 
-    {
+    xpSliderLabels = {
         Level = "Level XP Multiplier",
         StreetCred = "Street Cred XP Multiplier",
         Headhunter = "Headhunter XP Multiplier",

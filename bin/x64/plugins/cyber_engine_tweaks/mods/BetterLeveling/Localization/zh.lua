@@ -22,7 +22,11 @@ return {
         [2] = "法语",
         [3] = "西班牙语",
         [4] = "中文",
-        [5] = "俄语"
+        [5] = "俄语",
+        [6] = "德语",
+        [7] = "韩语",
+        [8] = "日语",
+        [9] = "马来语"
     },
 
     refreshLabel = "应用语言",
@@ -63,7 +67,7 @@ return {
     toggleLabels = {
         LevelCap = "启用自定义等级上限",
         StreetCredCap = "启用自定义街头声望",
-        AttributeCap = "启用属性上限",
+        AttributeCap = "启用属性上限（需要重启游戏）",
         StartingAttr = "启用初始属性点",
         CyberwareScaling = "启用赛博组件扩展",
         CyberwareCap = "启用赛博组件容量上限",

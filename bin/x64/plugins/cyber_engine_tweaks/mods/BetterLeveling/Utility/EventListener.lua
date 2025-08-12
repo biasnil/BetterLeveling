@@ -1,67 +1,45 @@
-local EventListener = {}
+-- Utility/EventListener.lua
+local EventListener   = {}
 
-local Core = require("Modules/LevelingCore")
-local UI = require("Modules/LevelingUI")
-local Constants = require("Utility/ConstantsHandler")
-local PersistModules = require("PersistModules")
+local Core            = require("Modules/LevelingCore")
+local UI              = require("Modules/LevelingUI")
+local Constants       = require("Utility/ConstantsHandler")
 
--------------------------------
--- Event API
--------------------------------
+function EventListener.on(event, cb)         registerForEvent(event, cb) end
+function EventListener.observe(class, m, cb) Observe(class, m, cb) end
+function EventListener.override(class, m, cb) Override(class, m, cb) end
 
-function EventListener.on(event, callback)
-    registerForEvent(event, callback)
-end
-
-function EventListener.observe(class, method, callback)
-    Observe(class, method, callback)
-end
-
-function EventListener.override(class, method, callback)
-    Override(class, method, callback)
-end
-
--------------------------------
--- Player Helpers
--------------------------------
-
-function EventListener.getPlayer()
-    return Game and Game.GetPlayer()
-end
-
-function EventListener.getDevData()
-    local player = EventListener.getPlayer()
-    return player and PlayerDevelopmentSystem.GetData(player)
-end
-
-function EventListener.withDevData(callback)
-    local devData = EventListener.getDevData()
-    if devData then callback(devData) end
-end
-
--------------------------------
--- Event Handlers
--------------------------------
-
+-- Handlers
 function EventListener.handleInit()
-    Core.curSettings = Core.loadSettings() or Constants.deepCopy(Constants.DefaultSettings)
-    Core.saveSettings()
-    Core.refreshVariables()
-    Core.applyFixesPersist()
-    Core.applyChangeableValue()
-    Core.applyStreetCredCap()
-    UI.buildUI()
+  Core.curSettings = Core.loadSettings() or Constants.deepCopy(Constants.DefaultSettings)
+  Core.saveSettings()
+  Core.refreshVariables()
+
+  Core.applyFixesPersist()
+  Core.applyChangeableValue()
+  Core.applyStreetCredCap()
+
+  UI.buildUI()
 end
 
 function EventListener.handleTweak()
-    Core.curSettings = Core.loadSettings() or Constants.deepCopy(Constants.DefaultSettings)
-    Core.refreshVariables()
-    Core.applyCyberwareCap()
+  Core.curSettings = Core.loadSettings() or Constants.deepCopy(Constants.DefaultSettings)
+  Core.refreshVariables()
+  Core.applyCyberwareCap()
 end
 
-function EventListener.handleUpdate()
-    local PersistModules = require("PersistModules")
-    EventListener.on("onUpdate", PersistModules.handleUpdate)
-end
+function EventListener.handleUpdate() end
+
+local PersistModules
+registerForEvent("onInit",   EventListener.handleInit)
+
+registerForEvent("onTweak",  EventListener.handleTweak)
+
+registerForEvent("onUpdate", function(dt)
+  PersistModules = PersistModules or require("PersistModules")
+  if PersistModules and PersistModules.handleUpdate then
+    PersistModules.handleUpdate(dt)
+  end
+end)
 
 return EventListener

@@ -3,11 +3,15 @@ local Constants  = require("Utility/ConstantsHandler")
 
 local function loadLocalization(id)
     local sources = {
-        [1] = "Localization/en",
-        [2] = "Localization/fr",
-        [3] = "Localization/es",
-        [4] = "Localization/zh",
-        [5] = "Localization/ru"
+        [1] = "Localization/en", -- English
+        [2] = "Localization/fr", -- French
+        [3] = "Localization/es", -- Spanish
+        [4] = "Localization/zh", -- Chinese
+        [5] = "Localization/ru", -- Russian
+        [6] = "Localization/de", -- German
+        [7] = "Localization/ko", -- Korean
+        [8] = "Localization/ja", -- Japanese
+        [9] = "Localization/ms", -- Malay
     }
     return require(sources[id or 1])
 end
