@@ -18,7 +18,10 @@ local defaultFlags = {
     XPMult_Netrunner = true,
     XPMult_Shinobi = true,
     XPMult_Solo = true,
-    XPMult_Engineer = true
+    XPMult_Engineer = true,
+
+    MoreAttrPerLevel = true,
+    MorePerkPerLevel = true
 }
 
 -- Default XP multipliers (flat values)
@@ -46,7 +49,9 @@ ConstantsHandler.DefaultSettings = {
     CyberwareCap = 1000,
     Language = 1,
     FeatureFlags = defaultFlags,
-    XPValues = defaultXPValues
+    XPValues = defaultXPValues,
+    AttrPointsPerLevel = 1,
+    PerkPointsPerLevel = 1
 }
 
 -- Utility to clone default settings

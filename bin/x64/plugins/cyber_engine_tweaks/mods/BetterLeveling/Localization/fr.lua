@@ -1,22 +1,22 @@
 return {
-    tab = "Amélioration de Niveau",
-    subcategory = "Paramètres de Niveau",
+    tab = "Leveling amélioré",
+    subcategory = "Paramètres de niveau",
 
-    levelCap = "Niveau Max",
-    levelCapDesc = "Niveau maximal du joueur. (par défaut : 60)",
+    levelCap = "Niveau maximal",
+    levelCapDesc = "Niveau maximum du joueur. (par défaut : 60)",
 
-    streetCredCap = "Crédit de Rue Max",
-    streetCredCapDesc = "Niveau maximal de crédit de rue (par défaut : 50).",
+    streetCredCap = "Cote de rue maximale",
+    streetCredCapDesc = "Niveau maximum de cote de rue (par défaut : 50).",
 
-    startPoints = "Points d’Attribut de Départ",
-    startPointsDesc = "Points d'attribut initiaux de V. Redémarrez le jeu. (par défaut : 7)",
+    startPoints = "Points d’attribut de départ",
+    startPointsDesc = "Points d’attribut au départ de V. Redémarrez le jeu. (par défaut : 7)",
 
-    maxAttribute = "Attribut Max au Début",
-    maxAttributeDesc = "Points maximum par attribut à la création du personnage. (par défaut : 6)",
+    maxAttribute = "Attribut initial max",
+    maxAttributeDesc = "Valeur max par attribut à la création. (par défaut : 6)",
 
     languageCategory = "Langue",
-    languageLabel = "Langue de l'Interface",
-    languageDesc = "Choisissez la langue de ce mod.",
+    languageLabel = "Langue de l’UI",
+    languageDesc = "Choisissez la langue du mod.",
     languageOptions = {
         [1] = "Anglais",
         [2] = "Français",
@@ -29,22 +29,27 @@ return {
         [9] = "Malais"
     },
 
-    refreshLabel = "Appliquer la Langue",
-    refreshDesc = "Enregistre votre sélection. Redémarrez le jeu ou rouvrez le menu du mod.",
-    restartPopup = "Redémarrez le jeu ou rouvrez le menu du mod pour appliquer les changements de langue.",
+    refreshLabel = "Appliquer la langue",
+    refreshDesc = "Enregistre votre choix. Redémarrez le jeu ou rouvrez le menu du mod pour appliquer.",
+    restartPopup = "Redémarrez le jeu ou rouvrez le menu du mod pour appliquer la langue.",
 
-    attributeCategory = "Paramètres des Attributs",
-    attributeCap = "Limite des Attributs",
-    attributeCapDesc = "Définit la valeur maximale pour chaque attribut. (par défaut : 20)",
+    attributeCategory = "Paramètres d’attribut",
+    attributeCap = "Limite d’attribut",
+    attributeCapDesc = "Définit la valeur maximale atteignable pour chaque attribut. (par défaut : 20)",
 
-    moreCyberware = "Capacité de Cyberware",
-    moreCyberwareDesc = "Facteur de progression de la capacité de cyberware selon votre niveau. (par défaut : 3)",
+    attrPerLevelLabel = "Points d’attribut par niveau",
+    attrPerLevelDesc  = "Nombre total de points d’attribut gagnés par niveau.",
+    perkPerLevelLabel = "Points de perk par niveau",
+    perkPerLevelDesc  = "Nombre total de points de perk gagnés par niveau.",
 
-    cyberwareCap = "Limite de Capacité de Cyberware",
-    cyberwareCapDesc = "Définit la capacité maximale de cyberware (nécessite un rechargement). (par défaut : 450)",
+    moreCyberware = "Capacité du cyberware",
+    moreCyberwareDesc = "Facteur d’échelle de la capacité de cyberware selon votre niveau. (par défaut : 3)",
 
-    featureTogglesCategory = "Activer ou Désactiver les Fonctionnalités",
-    toggleDesc = "Activez ou désactivez cette fonctionnalité.",
+    cyberwareCap = "Limite de capacité du cyberware",
+    cyberwareCapDesc = "Fixe la capacité max du cyberware (nécessite un rechargement). (par défaut : 450)",
+
+    featureTogglesCategory = "Activer/Désactiver des fonctions",
+    toggleDesc = "Activer ou désactiver cette fonction.",
 
     toggleOrder = {
         "LevelCap",
@@ -54,6 +59,8 @@ return {
         "CyberwareScaling",
         "CyberwareCap",
         "AttributeBonus",
+        "MoreAttrPerLevel",
+        "MorePerkPerLevel",
         "LevelBonus",
         "XPMultiplier",
         "XPMult_StreetCred",
@@ -65,25 +72,27 @@ return {
     },
 
     toggleLabels = {
-        LevelCap = "Activer Niveau Personnalisé",
-        StreetCredCap = "Activer Crédit de Rue Personnalisé",
-        AttributeCap = "Activer la Limite d’Attribut (Nécessite un redémarrage du jeu)",
-        StartingAttr = "Activer Attributs de Départ",
-        CyberwareScaling = "Activer l’Échelonnage Cyberware",
-        CyberwareCap = "Activer Limite Cyberware",
-        AttributeBonus = "Activer Bonus d’Attribut",
-        LevelBonus = "Activer Bonus de Niveau",
-        XPMultiplier = "Activer Multiplicateurs d’XP",
-        XPMult_StreetCred = "Activer Multiplicateur XP Crédit de Rue",
-        XPMult_Headhunter = "Activer Multiplicateur XP Chasseur de Têtes",
-        XPMult_Netrunner = "Activer Multiplicateur XP Netrunner",
-        XPMult_Shinobi = "Activer Multiplicateur XP Shinobi",
-        XPMult_Solo = "Activer Multiplicateur XP Solo",
-        XPMult_Engineer = "Activer Multiplicateur XP Ingénieur"
+        LevelCap = "Activer niveau personnalisé",
+        StreetCredCap = "Activer cote de rue personnalisée",
+        AttributeCap = "Activer la limite d’attribut (redémarrage requis)",
+        StartingAttr = "Activer les attributs de départ",
+        CyberwareScaling = "Activer l’échelle du cyberware",
+        CyberwareCap = "Activer la limite de cyberware",
+        AttributeBonus = "Activer les bonus d’attribut",
+        MoreAttrPerLevel = "Activer points d’attribut par niveau",
+        MorePerkPerLevel = "Activer points de perk par niveau",
+        LevelBonus = "Activer les bonus de niveau",
+        XPMultiplier = "Activer les multiplicateurs XP",
+        XPMult_StreetCred = "Activer multiplicateur XP de cote de rue",
+        XPMult_Headhunter = "Activer multiplicateur XP Headhunter",
+        XPMult_Netrunner = "Activer multiplicateur XP Netrunner",
+        XPMult_Shinobi = "Activer multiplicateur XP Shinobi",
+        XPMult_Solo = "Activer multiplicateur XP Solo",
+        XPMult_Engineer = "Activer multiplicateur XP Ingénieur"
     },
 
-    xpScalingCategory = "XP, Crédit de Rue, Shinobi",
-    xpScalingToggleDesc = "Activez ou désactivez le multiplicateur XP pour cette catégorie.",
+    xpScalingCategory = "Multiplicateurs XP, Cote & Shinobi",
+    xpScalingToggleDesc = "Activer/désactiver le multiplicateur XP pour cette discipline.",
     xpSliderDesc = "Définir le multiplicateur XP (par défaut : 1.0).",
 
     xpSliderOrder = {
@@ -97,9 +106,9 @@ return {
     },
 
     xpSliderLabels = {
-        Level = "Multiplicateur XP de Niveau",
-        StreetCred = "Multiplicateur XP Crédit de Rue",
-        Headhunter = "Multiplicateur XP Chasseur de Têtes",
+        Level = "Multiplicateur XP de niveau",
+        StreetCred = "Multiplicateur XP de cote de rue",
+        Headhunter = "Multiplicateur XP Headhunter",
         Netrunner = "Multiplicateur XP Netrunner",
         Shinobi = "Multiplicateur XP Shinobi",
         Solo = "Multiplicateur XP Solo",

@@ -1,41 +1,45 @@
 local persistModules = {}
 
-local Core           = require("Modules/LevelingCore")
-local StartupTweaks  = require("Function/StartupTweaks")
-local attrUnlock     = require("Function/AttributeUnlocked")
-local attrBonus      = require("Function/AttributeBonus")
-local levelBonus     = require("Function/LevelBonus")
-local cyberprogress  = require("Function/MoreCyberwareCapacity")
-local Math           = require("Utility/MathHandler")
+local Core                  = require("Modules/LevelingCore")
+local StartupTweaks         = require("Function/StartupTweaks")
+local attrUnlock            = require("Function/AttributeUnlocked")
+local attrBonus             = require("Function/AttributeBonus")
+local levelBonus            = require("Function/LevelBonus")
+local cyberprogress         = require("Function/MoreCyberwareCapacity")
+local Math                  = require("Utility/MathHandler")
+
+-- single source of truth for attribute stat types
+local STAT_TYPES = {
+    Reflexes         = gamedataStatType.Reflexes,
+    Cool             = gamedataStatType.Cool,
+    Strength         = gamedataStatType.Strength,
+    TechnicalAbility = gamedataStatType.TechnicalAbility,
+    Intelligence     = gamedataStatType.Intelligence
+}
 
 local function getDevData()
     local p = Game and Game.GetPlayer()
-    return p and PlayerDevelopmentSystem.GetData(p)
+    return p and PlayerDevelopmentSystem.GetData(p) or nil
 end
 
 local lastAttrValues = {}
-local baseApplied = false
-local bonusApplied = false
-local xpApplied = false
+local baseApplied    = false
+local bonusApplied   = false
+local xpApplied      = false
+local attrPerkApplied = false -- NEW: install extra-points-on-level once
 
+-- Apply things that are pure "push settings into game" once per boot
 function persistModules.applyBaseSettings()
-    local file = io.open("Data/config.json", "r")
-    if not file then return end
+    local cfg = Core.curSettings or Core.loadSettings()
 
-    local content = file:read("*a")
-    file:close()
-
-    local ok, config = pcall(function() return json.decode(content) end)
-    if not ok or not config then return end
-
-    if config.FeatureFlags.StartingAttr then
-        StartupTweaks:apply(config)
+    if cfg.FeatureFlags.StartingAttr then
+        StartupTweaks:apply(cfg)
     end
-    if config.FeatureFlags.AttributeCap then
-        attrUnlock:applyAttributeCap(config.AttributeCap)
+    if cfg.FeatureFlags.AttributeCap then
+        attrUnlock:applyAttributeCap(cfg.AttributeCap)
     end
-    if config.FeatureFlags.CyberwareScaling then
-        cyberprogress:apply(config)
+    if cfg.FeatureFlags.CyberwareScaling then
+        cyberprogress:apply(cfg)
     end
 end
 
@@ -45,16 +49,8 @@ function persistModules.tryApplyBonusIfNeeded()
     local devData = getDevData()
     if not devData then return false end
 
-    local attributes = {
-        gamedataStatType.Reflexes,
-        gamedataStatType.Cool,
-        gamedataStatType.Strength,
-        gamedataStatType.TechnicalAbility,
-        gamedataStatType.Intelligence
-    }
-
-    for _, attr in ipairs(attributes) do
-        local value = devData:GetAttributeValue(attr)
+    for _, stat in pairs(STAT_TYPES) do
+        local value = devData:GetAttributeValue(stat)
         if Math.shouldApplyAttributeBonus(value) then
             attrBonus:apply()
             return true
@@ -70,18 +66,10 @@ local function checkAttributeChanges()
     local devData = getDevData()
     if not devData then return end
 
-    local statTypes = {
-        Reflexes = gamedataStatType.Reflexes,
-        Cool = gamedataStatType.Cool,
-        Strength = gamedataStatType.Strength,
-        TechnicalAbility = gamedataStatType.TechnicalAbility,
-        Intelligence = gamedataStatType.Intelligence
-    }
-
-    for name, stat in pairs(statTypes) do
+    for name, stat in pairs(STAT_TYPES) do
         local current = devData:GetAttributeValue(stat)
-        local last = lastAttrValues[name] or 0
-        if current > last then
+        local last    = lastAttrValues[name]
+        if last == nil or current > last then
             attrBonus:apply()
         end
         lastAttrValues[name] = current
@@ -94,31 +82,25 @@ function persistModules.handleUpdate(dt)
 
     if not baseApplied then
         baseApplied = true
+
         Core.curSettings = Core.loadSettings()
         Core.refreshVariables()
         persistModules.applyBaseSettings()
 
-        local statTypes = {
-            Reflexes = gamedataStatType.Reflexes,
-            Cool = gamedataStatType.Cool,
-            Strength = gamedataStatType.Strength,
-            TechnicalAbility = gamedataStatType.TechnicalAbility,
-            Intelligence = gamedataStatType.Intelligence
-        }
-
-        for name, stat in pairs(statTypes) do
+        for name, stat in pairs(STAT_TYPES) do
             lastAttrValues[name] = devData:GetAttributeValue(stat)
         end
     end
 
     if baseApplied and not bonusApplied then
-        bonusApplied = persistModules.tryApplyBonusIfNeeded() or false
+        bonusApplied = persistModules.tryApplyBonusIfNeeded()
     end
 
     if baseApplied then
         checkAttributeChanges()
 
-        if Core.curSettings.FeatureFlags.LevelBonus and levelBonus and type(levelBonus.update) == "function" then
+        if Core.curSettings.FeatureFlags.LevelBonus
+            and levelBonus and type(levelBonus.update) == "function" then
             levelBonus.update()
         end
 
@@ -127,12 +109,19 @@ function persistModules.handleUpdate(dt)
             local xpMod = require("Function/XPMultiplier")
             xpMod:apply()
         end
+
+        local ff = Core.curSettings.FeatureFlags or {}
+        if (ff.MoreAttrPerLevel or ff.MorePerkPerLevel) and not attrPerkApplied then
+          attrPerkApplied = true
+          local ap = require("Function/AttributeandPerkperLevel")
+          ap:apply()
+        end
     end
 
-    if #Core.deferredQueue > 0 then
-        local task = table.remove(Core.deferredQueue, 1)
+    local q = Core.deferredQueue
+    if q and #q > 0 then
+        local task = table.remove(q, 1)
         local ok, err = pcall(task.func)
-        -- (optional) log err if not ok
     end
 end
 

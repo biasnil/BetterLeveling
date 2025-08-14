@@ -45,6 +45,4 @@ function AttributeBonus:apply()
     end
 end
 
-print("[BTL] AttributeBonus module loaded.")
-
 return AttributeBonus

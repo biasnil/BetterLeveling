@@ -121,6 +121,8 @@ local function buildUI()
     addIntSlider("/BTL/Level",     L.maxAttribute,    L.maxAttributeDesc,    3, 20,     1, "MaxStartingAttribute",     d.MaxStartingAttribute, Core.applyChangeableValue, "LevelCap")
     addIntSlider("/BTL/Attribute", L.moreCyberware,   L.moreCyberwareDesc,   3, 60,     1, "MoreCyberwareCapacity",    d.MoreCyberwareCapacity, Core.applyMoreCyberwareCapacity, "CyberwareScaling")
     addIntSlider("/BTL/Attribute", L.cyberwareCap,    L.cyberwareCapDesc,    450, 10000,100, "CyberwareCap",             d.CyberwareCap,      Core.applyCyberwareCap,   "CyberwareCap")
+    addIntSlider("/BTL/Level",     L.attrPerLevelLabel, L.attrPerLevelDesc, 1, 100, 1, "AttrPointsPerLevel", d.AttrPointsPerLevel, nil, "MoreAttrPerLevel")
+    addIntSlider("/BTL/Level",     L.perkPerLevelLabel, L.perkPerLevelDesc, 1, 100, 1, "PerkPointsPerLevel", d.PerkPointsPerLevel, nil, "MorePerkPerLevel")
 end
 
 return { buildUI = buildUI }

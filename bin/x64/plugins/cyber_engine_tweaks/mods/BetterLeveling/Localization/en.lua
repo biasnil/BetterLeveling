@@ -37,6 +37,11 @@ return {
     attributeCap = "Attribute Cap",
     attributeCapDesc = "Sets the maximum value each attribute can reach. (default: 20)",
 
+    attrPerLevelLabel = "Attribute Points per Level",
+    attrPerLevelDesc  = "Total Attribute points you gain per character level.",
+    perkPerLevelLabel = "Perk Points per Level",
+    perkPerLevelDesc  = "Total Perk points you gain per character level.",
+
     moreCyberware = "Cyberware Capacity",
     moreCyberwareDesc = "Sets the scaling factor for Cyberware capacity based on your level. (default: 3)",
 
@@ -54,6 +59,8 @@ return {
         "CyberwareScaling",
         "CyberwareCap",
         "AttributeBonus",
+        "MoreAttrPerLevel",
+        "MorePerkPerLevel",
         "LevelBonus",
         "XPMultiplier",
         "XPMult_StreetCred",
@@ -72,6 +79,8 @@ return {
         CyberwareScaling = "Enable Cyberware Scaling",
         CyberwareCap = "Enable Cyberware Cap",
         AttributeBonus = "Enable Attribute Bonuses",
+        MoreAttrPerLevel = "Enable Attribute Points per Level",
+        MorePerkPerLevel = "Enable Perk Points per Level",
         LevelBonus = "Enable Level Bonuses",
         XPMultiplier = "Enable XP Multipliers",
         XPMult_StreetCred = "Enable Street Cred XP Multiplier",

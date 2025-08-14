@@ -78,6 +78,8 @@ function Core.refreshVariables()
     Core.Globals.MoreCyberwareCapacity   = Core.curSettings.MoreCyberwareCapacity or Constants.DefaultSettings.MoreCyberwareCapacity
     Core.Globals.CyberwareCap            = Core.curSettings.CyberwareCap or Constants.DefaultSettings.CyberwareCap
     Core.Globals.XPValues                = Core.curSettings.XPValues or Constants.DefaultSettings.XPValues
+    Core.Globals.AttrPointsPerLevel      = Core.curSettings.AttrPointsPerLevel or (Constants.DefaultSettings and Constants.DefaultSettings.AttrPointsPerLevel) or 15
+    Core.Globals.PerkPointsPerLevel      = Core.curSettings.PerkPointsPerLevel or (Constants.DefaultSettings and Constants.DefaultSettings.PerkPointsPerLevel) or 15
 end
 
 function Core.revertAttributeCapToDefault()
@@ -86,7 +88,7 @@ function Core.revertAttributeCapToDefault()
         Core.curSettings.AttributeCap = def
         Core.saveSettings()
     end
-    require("Function/AttributeUnlocked"):applyAttributeCap(def) -- Just for redscript
+    require("Function/AttributeUnlocked"):applyAttributeCap(def)
 end
 
 function Core.applyFixesPersist()
@@ -142,6 +144,27 @@ function Core.getXPModifierFor(typeName)
         return 1.0
     end
     return Core.curSettings.XPValues[typeName] or 1.0
+end
+
+function Core.getPerLevelTargets(deltaLevels)
+    local cfg  = Core.curSettings or {}
+    local dfl  = Constants.DefaultSettings or {}
+    local ff   = cfg.FeatureFlags or {}
+    local mult = (deltaLevels and deltaLevels ~= 0) and deltaLevels or 1
+
+    local attrTarget = nil
+    if ff.MoreAttrPerLevel then
+        local v = tonumber(cfg.AttrPointsPerLevel) or dfl.AttrPointsPerLevel or 15
+        attrTarget = v * mult
+    end
+
+    local perkTarget = nil
+    if ff.MorePerkPerLevel then
+        local v = tonumber(cfg.PerkPointsPerLevel) or dfl.PerkPointsPerLevel or 15
+        perkTarget = v * mult
+    end
+
+    return attrTarget, perkTarget
 end
 
 function Core.reloadMods()

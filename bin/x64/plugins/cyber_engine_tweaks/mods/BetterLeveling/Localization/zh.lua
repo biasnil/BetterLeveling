@@ -18,15 +18,15 @@ return {
     languageLabel = "界面语言",
     languageDesc = "选择此模组使用的语言。",
     languageOptions = {
-        [1] = "英语",
-        [2] = "法语",
-        [3] = "西班牙语",
+        [1] = "English",
+        [2] = "Français",
+        [3] = "Español",
         [4] = "中文",
-        [5] = "俄语",
-        [6] = "德语",
-        [7] = "韩语",
-        [8] = "日语",
-        [9] = "马来语"
+        [5] = "Русский",
+        [6] = "Deutsch",
+        [7] = "한국어",
+        [8] = "日本語",
+        [9] = "Malay"
     },
 
     refreshLabel = "应用语言",
@@ -36,6 +36,11 @@ return {
     attributeCategory = "属性设置",
     attributeCap = "属性上限",
     attributeCapDesc = "设置每个属性的最大值。（默认：20）",
+
+    attrPerLevelLabel = "每级属性点",
+    attrPerLevelDesc  = "每升一级获得的属性点总数。",
+    perkPerLevelLabel = "每级天赋点",
+    perkPerLevelDesc  = "每升一级获得的天赋点总数。",
 
     moreCyberware = "赛博组件容量",
     moreCyberwareDesc = "根据等级设置赛博组件容量的增长倍数。（默认：3）",
@@ -54,6 +59,8 @@ return {
         "CyberwareScaling",
         "CyberwareCap",
         "AttributeBonus",
+        "MoreAttrPerLevel",
+        "MorePerkPerLevel",
         "LevelBonus",
         "XPMultiplier",
         "XPMult_StreetCred",
@@ -72,6 +79,8 @@ return {
         CyberwareScaling = "启用赛博组件扩展",
         CyberwareCap = "启用赛博组件容量上限",
         AttributeBonus = "启用属性加成",
+        MoreAttrPerLevel = "启用每级属性点",
+        MorePerkPerLevel = "启用每级天赋点",
         LevelBonus = "启用等级加成",
         XPMultiplier = "启用经验值倍率",
         XPMult_StreetCred = "启用街头声望经验倍率",
@@ -82,7 +91,7 @@ return {
         XPMult_Engineer = "启用工程师经验倍率"
     },
 
-    xpScalingCategory = "经验倍率、街头声望、忍者",
+    xpScalingCategory = "经验、街头声望、忍者倍率",
     xpScalingToggleDesc = "为此类别启用或禁用经验倍率。",
     xpSliderDesc = "设置经验倍率（默认：1.0）",
 

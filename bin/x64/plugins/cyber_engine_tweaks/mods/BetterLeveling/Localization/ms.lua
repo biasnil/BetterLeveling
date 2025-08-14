@@ -1,21 +1,21 @@
 return {
-    tab = "Peningkatan Tahap",
+    tab = "Leveling Lebih Baik",
     subcategory = "Tetapan Tahap",
 
     levelCap = "Had Tahap",
     levelCapDesc = "Tahap maksimum pemain. (lalai: 60)",
 
-    streetCredCap = "Had Kredit Jalanan",
-    streetCredCapDesc = "Tahap maksimum Kredit Jalanan (lalai: 50).",
+    streetCredCap = "Had Street Cred",
+    streetCredCapDesc = "Tahap maksimum Street Cred (lalai: 50).",
 
     startPoints = "Mata Atribut Permulaan",
-    startPointsDesc = "Mata atribut yang dimiliki V pada permulaan. Sila mulakan semula permainan. (lalai: 7)",
+    startPointsDesc = "Mata atribut yang V mula dengan. Sila mulakan semula permainan. (lalai: 7)",
 
-    maxAttribute = "Atribut Permulaan Maksimum",
-    maxAttributeDesc = "Mata maksimum setiap atribut ketika cipta watak. (lalai: 6)",
+    maxAttribute = "Atribut Permulaan Maks",
+    maxAttributeDesc = "Mata maksimum per atribut semasa cipta watak. (lalai: 6)",
 
     languageCategory = "Bahasa",
-    languageLabel = "Bahasa Antaramuka",
+    languageLabel = "Bahasa UI",
     languageDesc = "Pilih bahasa untuk mod ini.",
     languageOptions = {
         [1] = "Inggeris",
@@ -30,20 +30,25 @@ return {
     },
 
     refreshLabel = "Guna Bahasa",
-    refreshDesc = "Simpan pilihan anda. Mulakan semula permainan atau buka semula menu mod untuk menerapkan perubahan.",
-    restartPopup = "Mulakan semula permainan atau buka semula menu mod untuk menerapkan perubahan bahasa.",
+    refreshDesc = "Simpan pilihan anda. Mulakan semula permainan atau buka semula menu mod untuk guna perubahan.",
+    restartPopup = "Mulakan semula permainan atau buka semula menu mod untuk guna perubahan bahasa.",
 
     attributeCategory = "Tetapan Atribut",
     attributeCap = "Had Atribut",
-    attributeCapDesc = "Tetapkan nilai maksimum bagi setiap atribut. (lalai: 20)",
+    attributeCapDesc = "Tetapkan nilai maksimum setiap atribut. (lalai: 20)",
+
+    attrPerLevelLabel = "Mata Atribut Setiap Tahap",
+    attrPerLevelDesc  = "Jumlah mata atribut yang diperoleh setiap naik tahap.",
+    perkPerLevelLabel = "Mata Perk Setiap Tahap",
+    perkPerLevelDesc  = "Jumlah mata perk yang diperoleh setiap naik tahap.",
 
     moreCyberware = "Kapasiti Cyberware",
-    moreCyberwareDesc = "Tetapkan faktor skala kapasiti Cyberware berdasarkan tahap anda. (lalai: 3)",
+    moreCyberwareDesc = "Faktor penskalaan kapasiti cyberware mengikut tahap. (lalai: 3)",
 
     cyberwareCap = "Had Kapasiti Cyberware",
-    cyberwareCapDesc = "Tetapkan kapasiti maksimum Cyberware (perlu muat semula). (lalai: 450)",
+    cyberwareCapDesc = "Tetapkan kapasiti maksimum cyberware (perlu muat semula). (lalai: 450)",
 
-    featureTogglesCategory = "Hidupkan atau Matikan Ciri",
+    featureTogglesCategory = "Hidup/Matikan Ciri",
     toggleDesc = "Hidupkan atau matikan ciri ini.",
 
     toggleOrder = {
@@ -54,6 +59,8 @@ return {
         "CyberwareScaling",
         "CyberwareCap",
         "AttributeBonus",
+        "MoreAttrPerLevel",
+        "MorePerkPerLevel",
         "LevelBonus",
         "XPMultiplier",
         "XPMult_StreetCred",
@@ -66,24 +73,26 @@ return {
 
     toggleLabels = {
         LevelCap = "Hidupkan Tahap Tersuai",
-        StreetCredCap = "Hidupkan Kredit Jalanan Tersuai",
-        AttributeCap = "Hidupkan Had Atribut (Perlu mula semula permainan)",
+        StreetCredCap = "Hidupkan Street Cred Tersuai",
+        AttributeCap = "Hidupkan Had Atribut (perlu mula semula)",
         StartingAttr = "Hidupkan Atribut Permulaan",
-        CyberwareScaling = "Hidupkan Pengskalaan Cyberware",
+        CyberwareScaling = "Hidupkan Penskalaan Cyberware",
         CyberwareCap = "Hidupkan Had Cyberware",
         AttributeBonus = "Hidupkan Bonus Atribut",
+        MoreAttrPerLevel = "Hidupkan Mata Atribut/ Tahap",
+        MorePerkPerLevel = "Hidupkan Mata Perk/ Tahap",
         LevelBonus = "Hidupkan Bonus Tahap",
         XPMultiplier = "Hidupkan Pengganda XP",
-        XPMult_StreetCred = "Hidupkan Pengganda XP Kredit Jalanan",
-        XPMult_Headhunter = "Hidupkan Pengganda XP Pemburu Kepala",
+        XPMult_StreetCred = "Hidupkan Pengganda XP Street Cred",
+        XPMult_Headhunter = "Hidupkan Pengganda XP Headhunter",
         XPMult_Netrunner = "Hidupkan Pengganda XP Netrunner",
         XPMult_Shinobi = "Hidupkan Pengganda XP Shinobi",
         XPMult_Solo = "Hidupkan Pengganda XP Solo",
         XPMult_Engineer = "Hidupkan Pengganda XP Jurutera"
     },
 
-    xpScalingCategory = "XP, Kredit Jalanan, Shinobi",
-    xpScalingToggleDesc = "Hidupkan atau matikan pengganda XP untuk kategori ini.",
+    xpScalingCategory = "Pengganda XP, Street Cred & Shinobi",
+    xpScalingToggleDesc = "Hidup/matikan pengganda XP untuk bidang ini.",
     xpSliderDesc = "Tetapkan pengganda XP (lalai: 1.0).",
 
     xpSliderOrder = {
@@ -98,8 +107,8 @@ return {
 
     xpSliderLabels = {
         Level = "Pengganda XP Tahap",
-        StreetCred = "Pengganda XP Kredit Jalanan",
-        Headhunter = "Pengganda XP Pemburu Kepala",
+        StreetCred = "Pengganda XP Street Cred",
+        Headhunter = "Pengganda XP Headhunter",
         Netrunner = "Pengganda XP Netrunner",
         Shinobi = "Pengganda XP Shinobi",
         Solo = "Pengganda XP Solo",

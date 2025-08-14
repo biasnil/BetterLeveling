@@ -9,24 +9,24 @@ return {
     streetCredCapDesc = "Maximale Straßenruf-Stufe (Standard: 50).",
 
     startPoints = "Start-Attributpunkte",
-    startPointsDesc = "Attributpunkte, mit denen V startet. Bitte Spiel neu starten. (Standard: 7)",
+    startPointsDesc = "Attributpunkte, mit denen V startet. Bitte das Spiel neu starten. (Standard: 7)",
 
     maxAttribute = "Max. Startattribut",
     maxAttributeDesc = "Maximale Punkte pro Attribut bei der Charaktererstellung. (Standard: 6)",
 
     languageCategory = "Sprache",
     languageLabel = "UI-Sprache",
-    languageDesc = "Wähle die Sprache für dieses Mod.",
+    languageDesc = "Wähle die Sprache für diesen Mod.",
     languageOptions = {
-        [1] = "Englisch",
-        [2] = "Französisch",
-        [3] = "Spanisch",
-        [4] = "Chinesisch",
-        [5] = "Russisch",
+        [1] = "English",
+        [2] = "Français",
+        [3] = "Español",
+        [4] = "中文",
+        [5] = "Русский",
         [6] = "Deutsch",
-        [7] = "Koreanisch",
-        [8] = "Japanisch",
-        [9] = "Malaiisch"
+        [7] = "한국어",
+        [8] = "日本語",
+        [9] = "Malay"
     },
 
     refreshLabel = "Sprache anwenden",
@@ -36,6 +36,11 @@ return {
     attributeCategory = "Attribut-Einstellungen",
     attributeCap = "Attributlimit",
     attributeCapDesc = "Legt den Maximalwert für jedes Attribut fest. (Standard: 20)",
+
+    attrPerLevelLabel = "Attributpunkte pro Stufe",
+    attrPerLevelDesc  = "Gesamtzahl der Attributpunkte pro Charakterstufe.",
+    perkPerLevelLabel = "Perk-Punkte pro Stufe",
+    perkPerLevelDesc  = "Gesamtzahl der Perk-Punkte pro Charakterstufe.",
 
     moreCyberware = "Cyberware-Kapazität",
     moreCyberwareDesc = "Skalierungsfaktor der Cyberware-Kapazität basierend auf deinem Level. (Standard: 3)",
@@ -54,6 +59,8 @@ return {
         "CyberwareScaling",
         "CyberwareCap",
         "AttributeBonus",
+        "MoreAttrPerLevel",
+        "MorePerkPerLevel",
         "LevelBonus",
         "XPMultiplier",
         "XPMult_StreetCred",
@@ -72,6 +79,8 @@ return {
         CyberwareScaling = "Cyberware-Skalierung aktivieren",
         CyberwareCap = "Cyberware-Limit aktivieren",
         AttributeBonus = "Attribut-Boni aktivieren",
+        MoreAttrPerLevel = "Attributpunkte pro Stufe aktivieren",
+        MorePerkPerLevel = "Perk-Punkte pro Stufe aktivieren",
         LevelBonus = "Level-Boni aktivieren",
         XPMultiplier = "XP-Multiplikatoren aktivieren",
         XPMult_StreetCred = "Straßenruf-XP-Multiplikator aktivieren",
@@ -82,7 +91,7 @@ return {
         XPMult_Engineer = "Ingenieur-XP-Multiplikator aktivieren"
     },
 
-    xpScalingCategory = "XP, Straßenruf, Shinobi",
+    xpScalingCategory = "XP-, Straßenruf- und Shinobi-Multiplikatoren",
     xpScalingToggleDesc = "XP-Multiplikator für diese Kategorie ein-/ausschalten.",
     xpSliderDesc = "XP-Multiplikator festlegen (Standard: 1.0).",
 

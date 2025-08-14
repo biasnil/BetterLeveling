@@ -1,21 +1,21 @@
 return {
-    tab = "Улучшение Уровня",
-    subcategory = "Настройки Уровня",
+    tab = "Улучшенная прокачка",
+    subcategory = "Настройки уровня",
 
-    levelCap = "Максимальный Уровень",
-    levelCapDesc = "Максимальный уровень игрока. (по умолчанию: 60)",
+    levelCap = "Потолок уровня",
+    levelCapDesc = "Максимальный уровень игрока (по умолчанию: 60).",
 
-    streetCredCap = "Макс. Уровень Репутации",
+    streetCredCap = "Потолок репутации",
     streetCredCapDesc = "Максимальный уровень уличной репутации (по умолчанию: 50).",
 
-    startPoints = "Начальные Очки Атрибутов",
-    startPointsDesc = "Стартовые очки атрибутов V. Перезапустите игру. (по умолчанию: 7)",
+    startPoints = "Стартовые очки атрибутов",
+    startPointsDesc = "Очки атрибутов, с которых начинает V. Перезапустите игру. (по умолчанию: 7)",
 
-    maxAttribute = "Макс. Атрибут в Начале",
-    maxAttributeDesc = "Максимум очков на атрибут при создании персонажа. (по умолчанию: 6)",
+    maxAttribute = "Макс. стартовый атрибут",
+    maxAttributeDesc = "Максимум на атрибут при создании персонажа. (по умолчанию: 6)",
 
     languageCategory = "Язык",
-    languageLabel = "Язык Интерфейса",
+    languageLabel = "Язык интерфейса",
     languageDesc = "Выберите язык для этого мода.",
     languageOptions = {
         [1] = "Английский",
@@ -29,22 +29,27 @@ return {
         [9] = "Малайский"
     },
 
-    refreshLabel = "Применить Язык",
+    refreshLabel = "Применить язык",
     refreshDesc = "Сохраняет выбор. Перезапустите игру или откройте меню мода заново.",
-    restartPopup = "Перезапустите игру или откройте меню мода заново для применения изменений языка.",
+    restartPopup = "Перезапустите игру или заново откройте меню мода, чтобы применить язык.",
 
-    attributeCategory = "Настройки Атрибутов",
-    attributeCap = "Предел Атрибутов",
-    attributeCapDesc = "Устанавливает максимальное значение для каждого атрибута. (по умолчанию: 20)",
+    attributeCategory = "Атрибуты",
+    attributeCap = "Лимит атрибутов",
+    attributeCapDesc = "Задает максимальное значение для каждого атрибута. (по умолчанию: 20)",
 
-    moreCyberware = "Вместимость Киберимплантов",
-    moreCyberwareDesc = "Масштабирование вместимости киберимплантов в зависимости от уровня. (по умолчанию: 3)",
+    attrPerLevelLabel = "Очки атрибутов за уровень",
+    attrPerLevelDesc  = "Сколько очков атрибутов вы получаете за уровень персонажа.",
+    perkPerLevelLabel = "Очки перков за уровень",
+    perkPerLevelDesc  = "Сколько очков перков вы получаете за уровень персонажа.",
 
-    cyberwareCap = "Предел Вместимости Киберимплантов",
+    moreCyberware = "Вместимость киберимплантов",
+    moreCyberwareDesc = "Коэффициент роста вместимости киберимплантов с уровнем. (по умолчанию: 3)",
+
+    cyberwareCap = "Предел вместимости киберимплантов",
     cyberwareCapDesc = "Максимальная вместимость киберимплантов (требуется перезагрузка). (по умолчанию: 450)",
 
-    featureTogglesCategory = "Включить или Отключить Функции",
-    toggleDesc = "Включить или выключить эту функцию.",
+    featureTogglesCategory = "Включение/выключение функций",
+    toggleDesc = "Включить или отключить эту функцию.",
 
     toggleOrder = {
         "LevelCap",
@@ -54,6 +59,8 @@ return {
         "CyberwareScaling",
         "CyberwareCap",
         "AttributeBonus",
+        "MoreAttrPerLevel",
+        "MorePerkPerLevel",
         "LevelBonus",
         "XPMultiplier",
         "XPMult_StreetCred",
@@ -65,26 +72,28 @@ return {
     },
 
     toggleLabels = {
-        LevelCap = "Включить Пользовательский Уровень",
-        StreetCredCap = "Включить Пользовательскую Репутацию",
-        AttributeCap = "Включить Предел Атрибутов (Требуется перезапуск игры)",
-        StartingAttr = "Включить Начальные Атрибуты",
-        CyberwareScaling = "Включить Масштаб Киберимплантов",
-        CyberwareCap = "Включить Предел Киберимплантов",
-        AttributeBonus = "Включить Бонусы Атрибутов",
-        LevelBonus = "Включить Бонусы Уровня",
-        XPMultiplier = "Включить Множители Опыта",
-        XPMult_StreetCred = "Вкл. множитель опыта уличной репутации",
-        XPMult_Headhunter = "Вкл. множитель опыта охотника за головами",
-        XPMult_Netrunner = "Вкл. множитель опыта нетраннера",
-        XPMult_Shinobi = "Вкл. множитель опыта синоби",
-        XPMult_Solo = "Вкл. множитель опыта соло",
-        XPMult_Engineer = "Вкл. множитель опыта инженера"
+        LevelCap = "Включить свой предел уровня",
+        StreetCredCap = "Включить свой предел репутации",
+        AttributeCap = "Включить лимит атрибутов (нужен перезапуск)",
+        StartingAttr = "Включить стартовые атрибуты",
+        CyberwareScaling = "Включить масштабирование киберимплантов",
+        CyberwareCap = "Включить предел киберимплантов",
+        AttributeBonus = "Включить бонусы атрибутов",
+        MoreAttrPerLevel = "Вкл. очки атрибутов за уровень",
+        MorePerkPerLevel = "Вкл. очки перков за уровень",
+        LevelBonus = "Включить бонусы за уровни",
+        XPMultiplier = "Включить множители XP",
+        XPMult_StreetCred = "Вкл. множитель XP репутации",
+        XPMult_Headhunter = "Вкл. множитель XP Headhunter",
+        XPMult_Netrunner = "Вкл. множитель XP Netrunner",
+        XPMult_Shinobi = "Вкл. множитель XP Shinobi",
+        XPMult_Solo = "Вкл. множитель XP Solo",
+        XPMult_Engineer = "Вкл. множитель XP Engineer"
     },
 
-    xpScalingCategory = "XP, Репутация, Shinobi",
-    xpScalingToggleDesc = "Включить или отключить множитель опыта для этой категории.",
-    xpSliderDesc = "Установить множитель опыта (по умолчанию: 1.0).",
+    xpScalingCategory = "Множители XP, Репутации и Shinobi",
+    xpScalingToggleDesc = "Вкл./выкл. множитель XP для этого направления.",
+    xpSliderDesc = "Задать множитель XP (по умолчанию: 1.0).",
 
     xpSliderOrder = {
         "Level",
@@ -97,12 +106,12 @@ return {
     },
 
     xpSliderLabels = {
-        Level = "Множитель XP Уровня",
-        StreetCred = "Множитель XP Репутации",
-        Headhunter = "Множитель XP Охотника за головами",
-        Netrunner = "Множитель XP Нэтраннера",
-        Shinobi = "Множитель XP Синоби",
-        Solo = "Множитель XP Соло",
-        Engineer = "Множитель XP Инженера"
+        Level = "Множитель XP уровня",
+        StreetCred = "Множитель XP репутации",
+        Headhunter = "Множитель XP Headhunter",
+        Netrunner = "Множитель XP Netrunner",
+        Shinobi = "Множитель XP Shinobi",
+        Solo = "Множитель XP Solo",
+        Engineer = "Множитель XP Engineer"
     }
 }

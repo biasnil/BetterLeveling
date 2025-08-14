@@ -1,22 +1,22 @@
 return {
-    tab = "レベリング向上",
+    tab = "レベリング拡張",
     subcategory = "レベル設定",
 
     levelCap = "レベル上限",
-    levelCapDesc = "プレイヤーの最大レベル。（既定：60）",
+    levelCapDesc = "プレイヤーの最大レベル。（既定: 60）",
 
-    streetCredCap = "ストリートクレッド上限",
-    streetCredCapDesc = "ストリートクレッドの最大レベル（既定：50）。",
+    streetCredCap = "ストリートクレド上限",
+    streetCredCapDesc = "ストリートクレドの最大レベル（既定: 50）。",
 
-    startPoints = "初期属性ポイント",
-    startPointsDesc = "V が開始時に所持する属性ポイント。ゲームを再起動してください。（既定：7）",
+    startPoints = "初期アトリビュート点",
+    startPointsDesc = "Vが最初に所持するアトリビュート点。ゲームを再起動してください。（既定: 7）",
 
-    maxAttribute = "初期属性の最大値",
-    maxAttributeDesc = "キャラ作成時の属性ごとの最大ポイント。（既定：6）",
+    maxAttribute = "初期アトリビュート上限",
+    maxAttributeDesc = "キャラ作成時の各アトリビュート最大値。（既定: 6）",
 
     languageCategory = "言語",
-    languageLabel = "UI 言語",
-    languageDesc = "この Mod で使用する言語を選択します。",
+    languageLabel = "UI言語",
+    languageDesc = "このMODで使用する言語を選択。",
     languageOptions = {
         [1] = "英語",
         [2] = "フランス語",
@@ -30,21 +30,26 @@ return {
     },
 
     refreshLabel = "言語を適用",
-    refreshDesc = "選択を保存します。変更を反映するにはゲームを再起動するか、Mod メニューを開き直してください。",
-    restartPopup = "言語変更を反映するにはゲームを再起動するか、Mod メニューを開き直してください。",
+    refreshDesc = "選択を保存します。ゲームを再起動するかMODメニューを開き直してください。",
+    restartPopup = "言語変更を適用するにはゲーム再起動またはMODメニューを再度開いてください。",
 
-    attributeCategory = "属性設定",
-    attributeCap = "属性上限",
-    attributeCapDesc = "各属性が到達できる最大値を設定します。（既定：20）",
+    attributeCategory = "アトリビュート設定",
+    attributeCap = "アトリビュート上限",
+    attributeCapDesc = "各アトリビュートが到達できる最大値を設定。（既定: 20）",
+
+    attrPerLevelLabel = "レベル毎のアトリビュート点",
+    attrPerLevelDesc  = "レベルアップ毎に獲得するアトリビュート点の合計。",
+    perkPerLevelLabel = "レベル毎のパーク点",
+    perkPerLevelDesc  = "レベルアップ毎に獲得するパーク点の合計。",
 
     moreCyberware = "サイバーウェア容量",
-    moreCyberwareDesc = "レベルに応じたサイバーウェア容量のスケーリング係数を設定します。（既定：3）",
+    moreCyberwareDesc = "レベルに応じたサイバーウェア容量の倍率を設定。（既定: 3）",
 
     cyberwareCap = "サイバーウェア容量上限",
-    cyberwareCapDesc = "サイバーウェアの最大容量を設定（再読み込みが必要）。（既定：450）",
+    cyberwareCapDesc = "サイバーウェアの最大容量を設定（再読み込みが必要）。（既定: 450）",
 
-    featureTogglesCategory = "機能の有効 / 無効",
-    toggleDesc = "この機能をオン/オフします。",
+    featureTogglesCategory = "機能の有効/無効",
+    toggleDesc = "この機能をオン/オフにします。",
 
     toggleOrder = {
         "LevelCap",
@@ -54,6 +59,8 @@ return {
         "CyberwareScaling",
         "CyberwareCap",
         "AttributeBonus",
+        "MoreAttrPerLevel",
+        "MorePerkPerLevel",
         "LevelBonus",
         "XPMultiplier",
         "XPMult_StreetCred",
@@ -66,25 +73,27 @@ return {
 
     toggleLabels = {
         LevelCap = "カスタムレベルを有効化",
-        StreetCredCap = "カスタム・ストリートクレッドを有効化",
-        AttributeCap = "属性上限を有効化（ゲームの再起動が必要）",
-        StartingAttr = "初期属性を有効化",
-        CyberwareScaling = "サイバーウェア拡張を有効化",
-        CyberwareCap = "サイバーウェア容量上限を有効化",
-        AttributeBonus = "属性ボーナスを有効化",
+        StreetCredCap = "カスタム・ストリートクレドを有効化",
+        AttributeCap = "アトリビュート上限を有効化（再起動が必要）",
+        StartingAttr = "初期アトリビュートを有効化",
+        CyberwareScaling = "サイバーウェア倍率を有効化",
+        CyberwareCap = "サイバーウェア上限を有効化",
+        AttributeBonus = "アトリビュートボーナスを有効化",
+        MoreAttrPerLevel = "レベル毎のアトリビュート点を有効化",
+        MorePerkPerLevel = "レベル毎のパーク点を有効化",
         LevelBonus = "レベルボーナスを有効化",
-        XPMultiplier = "XP 倍率を有効化",
-        XPMult_StreetCred = "ストリートクレッド XP 倍率を有効化",
-        XPMult_Headhunter = "ヘッドハンター XP 倍率を有効化",
-        XPMult_Netrunner = "ネットランナー XP 倍率を有効化",
-        XPMult_Shinobi = "シノビ XP 倍率を有効化",
-        XPMult_Solo = "ソロ XP 倍率を有効化",
-        XPMult_Engineer = "エンジニア XP 倍率を有効化"
+        XPMultiplier = "XP倍率を有効化",
+        XPMult_StreetCred = "ストリートクレドXP倍率を有効化",
+        XPMult_Headhunter = "ヘッドハンターXP倍率を有効化",
+        XPMult_Netrunner = "ネットランナーXP倍率を有効化",
+        XPMult_Shinobi = "シノビXP倍率を有効化",
+        XPMult_Solo = "ソロXP倍率を有効化",
+        XPMult_Engineer = "エンジニアXP倍率を有効化"
     },
 
-    xpScalingCategory = "XP・ストリートクレッド・シノビ",
-    xpScalingToggleDesc = "このカテゴリの XP 倍率をオン/オフにします。",
-    xpSliderDesc = "XP 倍率を設定（既定：1.0）。",
+    xpScalingCategory = "XP・ストリートクレド・シノビ倍率",
+    xpScalingToggleDesc = "この分野のXP倍率を切り替えます。",
+    xpSliderDesc = "XP倍率を設定（既定: 1.0）。",
 
     xpSliderOrder = {
         "Level",
@@ -97,12 +106,12 @@ return {
     },
 
     xpSliderLabels = {
-        Level = "レベル XP 倍率",
-        StreetCred = "ストリートクレッド XP 倍率",
-        Headhunter = "ヘッドハンター XP 倍率",
-        Netrunner = "ネットランナー XP 倍率",
-        Shinobi = "シノビ XP 倍率",
-        Solo = "ソロ XP 倍率",
-        Engineer = "エンジニア XP 倍率"
+        Level = "レベルXP倍率",
+        StreetCred = "ストリートクレドXP倍率",
+        Headhunter = "ヘッドハンターXP倍率",
+        Netrunner = "ネットランナーXP倍率",
+        Shinobi = "シノビXP倍率",
+        Solo = "ソロXP倍率",
+        Engineer = "エンジニアXP倍率"
     }
 }
